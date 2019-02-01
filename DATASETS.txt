@@ -1,0 +1,19 @@
+
+Link to primary dataset: https://www.eia.gov/electricity/data/eia860/
+
+For our primary dataset, we chose data from the U.S. Energy Information Administration (EIA). 
+Our data pertains to generators built in the United States and is collected by Form EIA-860. 
+This data contains multiple files that provide a detailed description of every electric generator 
+in the U.S. Some examples of data included in this set are location, ownership, prime mover of generator, 
+electricity output, emissions, costs, equipment, and so much more.
+
+Link to potential secondary dataset: https://www.eia.gov/electricity/data/eia861/
+
+The second data set comes from Form EIA-861. It supports the primary dataset by providing a more in depth 
+explanation of the economic factors associated with the generators mentioned in the primary dataset. It provides 
+operation and metering data associated with costs and outputs for each generator. 
+
+
+The connections between these two data sets would be that they each provide information on electricity generators 
+in the United States. Using both of them, we can analyze things like cost of electricity in different sectors and at 
+different levels, efficiency of output, and growth rate of certain technologies over time
