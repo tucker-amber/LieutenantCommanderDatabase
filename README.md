@@ -1,9 +1,5 @@
 # LieutenantCommanderDatabase
 
-Daniel Greer 
-EID: ddg943
-Email: danny.greer@utexas.edu
+<Daniel Greer>, <ddg943>, <danny.greer@utexas.edu>
 
-Amber Tucker
-EID: art653
-GitHub: tucker.amber.r@gmail.com
+<Amber Tucker>, <art653>, <tucker.amber.r@gmail.com>
