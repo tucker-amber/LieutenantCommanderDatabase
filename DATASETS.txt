@@ -1,19 +1,10 @@
 
-Link to primary dataset: https://www.eia.gov/electricity/data/eia860/
+Link to primary dataset: https://public.enigma.com/datasets/u-s-department-of-agriculture-export-sales-2005/54c111b2-3f99-4f45-8218-0ef28a11f8f0
 
-For our primary dataset, we chose data from the U.S. Energy Information Administration (EIA). 
-Our data pertains to generators built in the United States and is collected by Form EIA-860. 
-This data contains multiple files that provide a detailed description of every electric generator 
-in the U.S. Some examples of data included in this set are location, ownership, prime mover of generator, 
-electricity output, emissions, costs, equipment, and so much more.
+For our primary dataset, we chose data from the U.S. Department of Agriculture (USDA). 
+Our data pertains to crops exported from the United States and is collected by the USDA. 
+This dataset contains six files (each file = 1 year of data. 2000-2005) that provide a detailed description of crops exported from 
+the U.S. Some examples of data included in this set are crop type, country code, country name, week exported, region code, and cost.
+Irregularities are present in the "commodity code" column (some are listed as strings and some as numbers).
 
-Link to potential secondary dataset: https://www.eia.gov/electricity/data/eia861/
-
-The second data set comes from Form EIA-861. It supports the primary dataset by providing a more in depth 
-explanation of the economic factors associated with the generators mentioned in the primary dataset. It provides 
-operation and metering data associated with costs and outputs for each generator. 
-
-
-The connections between these two data sets would be that they each provide information on electricity generators 
-in the United States. Using both of them, we can analyze things like cost of electricity in different sectors and at 
-different levels, efficiency of output, and growth rate of certain technologies over time
+We have not selected a secondary dataset, but there are a number of options for exploration. A secondary dataset could be used to compare what conditions are correlated with exportation of crops, including production in the United States/abroad, annual weather patterns, warfare, etc.
