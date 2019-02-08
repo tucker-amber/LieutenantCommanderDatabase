@@ -16,18 +16,19 @@ FROM `alien-grove-220420.Aggriculture.Exports_2002`
 WHERE string_field_5 = "FINLAND"
 ORDER BY string_field_1
 
--- Number of times food/food products were bought from US by Cuba in 2001
-SELECT COUNT (string_field_1)
+-- Types of food/food products (listed alphabetically) purchased by Cuba in 2001
+SELECT DISTINCT (string_field_1)
 FROM `alien-grove-220420.Aggriculture.Exports_2001`
 WHERE string_field_5 = "CUBA"
+ORDER BY string_field_1
 
--- Food/Food products purchased in 2004 by unreported countries
+-- Food/Food products purchased (listed alphabetically) in 2004 by unreported countries
 SELECT DISTINCT (string_field_1)
 FROM `alien-grove-220420.Aggriculture.Export_2004`
 WHERE string_field_5 = "UNKNOWN"
 ORDER BY string_field_1
 
--- List of large orders (by country name) of food/food products ordered by week (ascending)
+-- List of large orders (identified by country name) of food/food products ordered by week (ascending)
 SELECT string_field_4
 FROM `alien-grove-220420.Aggriculture.Exports_2003`
 WHERE int64_field_10 > 100000
