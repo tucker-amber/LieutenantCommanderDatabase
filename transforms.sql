@@ -17,4 +17,16 @@ FROM `alien-grove-220420.Aggriculture.Exports_2000_to_2005`
 
 -- Cast week_ending_date to type DATE and rename as Date
 SELECT * EXCEPT(week_ending_date), CAST(week_ending_date AS DATE) as Date
-FROM `alien-grove-220420.Aggriculture.Exports_2000_to_2005_reduced` 
+FROM `alien-grove-220420.Aggriculture.Exports_2000_to_2005_reduced`
+
+-- Separate entity Country from entity Export Transaction by creating Country table
+CREATE TABLE Aggriculture.Countries as
+select distinct country_code, country_name, region_code
+from Aggriculture.Exports_2000_to_2005
+where country_code is not null
+order by country_code
+
+-- Remove attributes from Export Transactions table that belong to Country entity
+CREATE TABLE Aggriculture.Exports_2000_to_2005 as
+SELECT * EXCEPT(region_code, country_name)
+FROM Aggriculture.Exports_2000_2005_Final
