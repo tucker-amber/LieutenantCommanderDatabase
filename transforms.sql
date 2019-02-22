@@ -14,3 +14,7 @@
  -- Remove columns from unioned dataset
  SELECT * EXCEPT(serialid, sort_code, net_sales_for_week_next_year, outstanding_sales_next_year)
 FROM `alien-grove-220420.Aggriculture.Exports_2000_to_2005` 
+
+-- Cast week_ending_date to type DATE and rename as Date
+SELECT * EXCEPT(week_ending_date), CAST(week_ending_date AS DATE) as Date
+FROM `alien-grove-220420.Aggriculture.Exports_2000_to_2005_reduced` 
