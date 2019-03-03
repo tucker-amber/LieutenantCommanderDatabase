@@ -15,7 +15,7 @@ from apache_beam.io import WriteToText
 # DoFn goes here
 
 # Initalize project id
-PROJECT_ID = os.environ['alien-grove-220420']
+PROJECT_ID = os.environ['PROJECT_ID']
 
 options = {
 	'project': PROJECT_ID
