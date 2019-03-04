@@ -15,6 +15,7 @@ from apache_beam.io import WriteToText
 # Initalized dictionary of corresponding numerical country codes (key) and string country codes (values)
 countryCodeDict = {'0000':'REGION', '1220':'CANADA', '2010':'MEXICO', '2470':'DOM REP', '2740':'TRINID', '2770':'N ANTIL', '2830': 'F W IND', '3070': 'VENEZ', '3150':'SURINAM', '3330':'PERU', '3770':
 'CHILI', '3510':'BRAZIL', '3550':'URUGUAY', '3570':'3570', '5490':'THAILND','5600': 'INDNSIA', '5800': 'KOR REP', '5820':'HG KONG', '9110': 'VIRGIN I'}
+
 # Replace all instances of numeric country codes with string country codes
 class removeNumericCountryCode(beam.DoFn):
     def process(self, element):
@@ -58,15 +59,15 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
     query_results_Exports_2000_to_2005 = p | 'Read from Exports table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Exports_2000_to_2005 LIMIT 100')) # currently limiting to 100 for testing
 	
     # 3 write input PCollection to local file input.txt
-    query_results_Exports_2000_to_2005 | 'Write querried raw data to input2.txt' >> WriteToText('input2.txt')
+    query_results_Exports_2000_to_2005 | 'Write querried raw data to input.txt' >> WriteToText('input.txt')
 
 	# 4 apply DoFn through ParDo
-    out_pcoll = query_results_Exports_2000_to_2005 | 'Description of ParDo function (ex: Extract actor' >> beam.ParDo(removeNumericCountryCode())
+    out_pcoll = query_results_Exports_2000_to_2005 | 'Replace instances of country_code where it is numeric with string country_code' >> beam.ParDo(removeNumericCountryCode())
 
 	# 5 write output PCollection to local file output.txt
 	out_pcoll | 'Write transformed data to output.txt' >> WriteToText('output.txt')
 
-	qualified_table_name = PROJECT_ID + ':Aggriculture.test' #EDIT add new table name
+	qualified_table_name = PROJECT_ID + ':Aggriculture.test'
 	table_schema = 'commodity_code:STRING,country_code:STRING,current_week_export:INTEGER,accumulated_exports_current_year:INTEGER,outstanding_sales_current_year:INTEGER,total_outstanding_sales_exports_as_of_current_week:INTEGER,net_sales_for_week_current_year:INTEGER,date:DATE' #EDIT add schema for new table
 
 	# 6 write output PCollection to new BigQuery table in main dataset
