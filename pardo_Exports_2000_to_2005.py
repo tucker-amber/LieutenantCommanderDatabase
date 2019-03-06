@@ -1,12 +1,5 @@
 # Milestone 5: ParDo on Exports_2000_to_2005
-''' Req:
-1. run BigQuery query on main dataset
-2. make input PCollection from query result
-3. write input PCollection to local file input.txt
-4. apply DoFn through ParDo
-5. write output PCollection to local file output.txt
-6. write output PCollection to new BigQuery table in main dataset
-''' 
+
 import os
 import apache_beam as beam
 from apache_beam.io import ReadFromText
@@ -34,7 +27,7 @@ class removeNumericCountryCode(beam.DoFn):
             # replace numeric value with string value by comparing numeric key to country code dict
             country_code = countryCodeDict.get(country_code)
             
-            # Create new record with updates country_code value
+            # Create new record with updates to country_code value
             new_record = {'commodity_code': commodity_code, 'country_code': country_code, 'current_week_export': current_week_export, 'accumulated_exports_current_year': accumulated_exports_current_year, 'outstanding_sales_current_year': outstanding_sales_current_year, 'total_outstanding_sales_exports_as_of_current_week': total_outstanding_sales_exports_as_of_current_week, 'net_sales_for_week_current_year': net_sales_for_week_current_year}
             # return record with updated country_code
             return [new_record]
@@ -57,8 +50,8 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
 
     # 1-2 make input PCollection from BigQuery query result
     # Query Exports_2000_to_2005 table. selects all attributes.
-    query_results_Exports_2000_to_2005 = p | 'Read from Exports table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Exports_2000_to_2005 LIMIT 100')) # EDIT! currently limiting to 100 for testing
-	
+    query_results_Exports_2000_to_2005 = p | 'Read from Exports table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Exports_2000_to_2005'))
+
     # 3 write input PCollection to local file input.txt
     query_results_Exports_2000_to_2005 | 'Write querried raw data to input.txt' >> WriteToText('input.txt')
 
@@ -68,7 +61,7 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
 	# 5 write output PCollection to local file output.txt
     out_pcoll | 'Write transformed data to output.txt' >> WriteToText('output.txt')
 
-    qualified_table_name = PROJECT_ID + ':Aggriculture.test'
+    qualified_table_name = PROJECT_ID + ':Aggriculture.Exports_MS5'
     table_schema = 'commodity_code:STRING,country_code:STRING,current_week_export:INTEGER,accumulated_exports_current_year:INTEGER,outstanding_sales_current_year:INTEGER,total_outstanding_sales_exports_as_of_current_week:INTEGER,net_sales_for_week_current_year:INTEGER,date:DATE'
 
 	# 6 write output PCollection to new BigQuery table in main dataset
