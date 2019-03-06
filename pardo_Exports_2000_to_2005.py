@@ -44,7 +44,7 @@ class removeNumericCountryCode(beam.DoFn):
 
 
 # Initalize project id
-PROJECT_ID = os.environ['PROJECT_ID']
+PROJECT_ID = os.environ['project_id']
 
 options = {
 	'project': PROJECT_ID
