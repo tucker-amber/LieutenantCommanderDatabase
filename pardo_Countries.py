@@ -15,6 +15,7 @@ class removeCountryCode(beam.DoFn):
         #Create new record by removing the country code
         new_record = {'country_name': country_name, 'region_code': region_code}
 
+        return [new_record]
 # Initalize project id
 PROJECT_ID = os.environ['PROJECT_ID']
 
