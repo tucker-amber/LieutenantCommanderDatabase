@@ -33,7 +33,7 @@ opts = beam.pipeline.PipelineOptions(flags=[], **options)
 with beam.Pipeline('DataflowRunner', options=opts) as p:
 
     # Query Countries table on big query selecting all attributes
-    query_results_Countries= p | 'Read from Countries table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Countries LIMIT 100')) # EDIT! currently limiting to 100 for testing
+    query_results_Countries= p | 'Read from Countries table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Countries')) # EDIT! currently limiting to 100 for testing
     
     # Write input PCollection to local file input.txt
     query_results_Countries | 'Write querried raw data to input.txt' >> WriteToText('input.txt')
@@ -45,7 +45,7 @@ with beam.Pipeline('DataflowRunner', options=opts) as p:
     out_pcoll | 'Write transformed data to output.txt' >> WriteToText('output.txt')
 
     #Create new table
-    qualified_table_name = PROJECT_ID + ':Aggriculture.Countries2'
+    qualified_table_name = PROJECT_ID + ':Aggriculture.CountriesMS6'
     table_schema = 'country_name:STRING,region_code:INTEGER'
 
     # Write output PCollection to new BigQuery table in main dataset
