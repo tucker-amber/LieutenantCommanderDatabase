@@ -3,7 +3,7 @@ import apache_beam as beam
 from apache_beam.io import ReadFromText
 from apache_beam.io import WriteToText
 
-class FormatDOBFn(beam.DoFn):
+class removeCountryCode(beam.DoFn):
   def process(self, element):
         record = element
         country_code = record.get('country_code')
