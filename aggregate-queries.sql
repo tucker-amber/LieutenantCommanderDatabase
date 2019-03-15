@@ -1,0 +1,4 @@
+-- aggregate-queries.sql
+--8 total with agg quueries
+--5+ GROUP BY 
+--3+ HAVING
