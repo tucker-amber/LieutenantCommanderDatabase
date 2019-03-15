@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Sums all accumulated exports for each country
 SELECT country_code, SUM(accumulated_exports_current_year) AS `Total_Accumulated_Exports`
 FROM `alien-grove-220420.Aggriculture.Exports_MS5`
@@ -45,9 +44,4 @@ HAVING Average_Weekly_Sales > 1000
 SELECT country_code, MAX(outstanding_sales_current_year) AS `Highest_Annual_Outstanding_Sales`
 FROM `alien-grove-220420.Aggriculture.Exports_MS5`
 GROUP BY country_code
-=======
--- aggregate-queries.sql
---8 total with agg quueries
---5+ GROUP BY 
---3+ HAVING
->>>>>>> 6e0a7e9976f93e50bf4e14e231af29b9dea7b7fc
+
