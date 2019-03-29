@@ -39,7 +39,7 @@ WHERE EXTRACT(YEAR FROM e.date) = 2005
   WHERE region_code = 1)
 
 -- Displays greatest total exports to one region in 2005
- SELECT MAX(totalExports) as GreatestExportsFromOneRegion2005
+ SELECT MAX(totalExports) as GreatestExportsToOneRegion2005
 FROM
   -- Gets total exports for each region in 2005
   (
@@ -49,3 +49,17 @@ FROM
   ON e.country_code = c.country_name
   WHERE EXTRACT(YEAR FROM e.date) = 2005
   GROUP BY region_code)
+
+    -- Displyas region with greatest soybean imports from US in 2002
+  SELECT region_code, totalExports as SoybeansImportedFromUS_2002
+  FROM
+  -- Gets total exports for soybeans by region in 2002
+  (
+  SELECT SUM(current_week_export) as totalExports, region_code
+  FROM Aggriculture.Exports_MS5 e
+  JOIN Aggriculture.Countries2 c
+  ON e.country_code = c.country_name
+  WHERE EXTRACT(YEAR FROM e.date) = 2002 and e.commodity_code LIKE '%Soybeans%'
+  GROUP BY region_code)
+  ORDER BY totalExports DESC
+  LIMIT 1
