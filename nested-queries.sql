@@ -63,3 +63,18 @@ FROM
   GROUP BY region_code)
   ORDER BY totalExports DESC
   LIMIT 1
+
+
+-- Displays total exports to each region in 2001 in order of most to least exports
+ SELECT region_code as Region, MAX(totalExports) as TotalExportsToRegion
+FROM
+  -- Gets total exports for each region in 2001
+  (
+  SELECT SUM(current_week_export) as totalExports, region_code
+  FROM Aggriculture.Exports_MS5 e
+  JOIN Aggriculture.Countries2 c
+  ON e.country_code = c.country_name
+  WHERE EXTRACT(YEAR FROM e.date) = 2002
+  GROUP BY region_code)
+  GROUP BY region_code
+  ORDER BY TotalExportsToRegion DESC
