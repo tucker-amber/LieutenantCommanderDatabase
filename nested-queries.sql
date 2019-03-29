@@ -37,3 +37,15 @@ WHERE EXTRACT(YEAR FROM e.date) = 2005
   JOIN Aggriculture.Countries2 c
   ON e.country_code = c.country_name
   WHERE region_code = 1)
+
+-- Displays greatest total exports to one region in 2005
+ SELECT MAX(totalExports) as GreatestExportsFromOneRegion2005
+FROM
+  -- Gets total exports for each region in 2005
+  (
+  SELECT SUM(current_week_export) as totalExports, region_code
+  FROM Aggriculture.Exports_MS5 e
+  JOIN Aggriculture.Countries2 c
+  ON e.country_code = c.country_name
+  WHERE EXTRACT(YEAR FROM e.date) = 2005
+  GROUP BY region_code)
