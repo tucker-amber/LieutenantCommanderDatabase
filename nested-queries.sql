@@ -25,3 +25,15 @@ FROM `alien-grove-220420.Aggriculture.Exports_MS5`
 WHERE country_code IN 
 (SELECT country_code FROM `alien-grove-220420.Aggriculture.Exports_MS5` WHERE outstanding_sales_current_year > 100000)
 GROUP BY country_code 
+
+-- Displays sum of purchases in 2005 from all countries in region 1
+SELECT SUM(current_week_export) AS TotalPurchasesForRegion1_2005
+FROM Aggriculture.Exports_MS5 e
+WHERE EXTRACT(YEAR FROM e.date) = 2005
+  AND e.country_code IN
+  -- Returns country codes from all countries in region 1
+  (SELECT e.country_code
+  FROM Aggriculture.Exports_MS5 e
+  JOIN Aggriculture.Countries2 c
+  ON e.country_code = c.country_name
+  WHERE region_code = 1)
