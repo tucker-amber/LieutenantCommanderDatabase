@@ -1,3 +1,4 @@
 describe 6 queries in regular speech
 --what query should do
 --required transformations to make query work
+--each query should join table from dataset1 with table from dataset2
