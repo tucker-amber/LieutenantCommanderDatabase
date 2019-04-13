@@ -7,4 +7,7 @@ This dataset contains six files (each file = 1 year of data. 2000-2005) that pro
 the U.S. Some examples of data included in this set are crop type, country code, country name, week exported, region code, and cost.
 Irregularities are present in the "commodity code" column (some are listed as strings and some as numbers).
 
-We have not selected a secondary dataset, but there are a number of options for exploration. A secondary dataset could be used to compare what conditions are correlated with exportation of crops, including production in the United States/abroad, annual weather patterns, warfare, etc.
+Link to secondary dataset source: https://comtrade.un.org/data/
+
+The secondary dataset was collected from the United Nations, which provides information on commodity trading between nations.
+This dataset contains four files (each file = 1 year of data. 2000, 2001, 2004, 2005. Years 2002 and 2003 were not available) that provide information on imports to the United States. Some examples of data included in this set are commodity name, commodity type, total weight, and exporting country. Irregularities include columns with no values and repeated columns.
