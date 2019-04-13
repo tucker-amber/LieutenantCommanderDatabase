@@ -1,0 +1,3 @@
+describe 6 queries in regular speech
+--what query should do
+--required transformations to make query work
