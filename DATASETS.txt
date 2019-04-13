@@ -10,4 +10,4 @@ Irregularities are present in the "commodity code" column (some are listed as st
 Link to secondary dataset source: https://comtrade.un.org/data/
 
 The secondary dataset was collected from the United Nations, which provides information on commodity trading between nations.
-This dataset contains four files (each file = 1 year of data. 2000, 2001, 2004, 2005. Years 2002 and 2003 were not available) that provide information on imports to the United States. Some examples of data included in this set are commodity name, commodity type, total weight, and exporting country. Irregularities include columns with no values and repeated columns.
+This dataset contains four files (each file = 1 year of data. 2000, 2001, 2004, 2005. Years 2002 and 2003 were not available) that provide information on imports to the United States. Some examples of data included in this set are commodity name, commodity type, total weight, and exporting country. Irregularities include columns with no values and repeated columns. Some values for netweight are ints and some are NULL values.
