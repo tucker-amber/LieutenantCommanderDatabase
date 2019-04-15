@@ -2,3 +2,21 @@ describe 6 queries in regular speech
 --what query should do
 --required transformations to make query work
 --each query should join table from dataset1 with table from dataset2
+
+Query 1:
+Join Imports_All_Raw and Countries on countries. Use this to identify overlapping countries in both datasets and see if any countries are missing from one or the other. 
+
+Query 2: 
+Join Imports_All_Raw and Exports_MS5 on commodities. Use this to identify what commodities are included in common in both datasets. 
+
+Query 3: 
+Aggregate Exports_MS5 using SUM by year and commodity to get total exports for that year by commodity. Then join with Imports_All_Raw on year to get the value of those exports.
+
+Query 4:
+Aggregate Imports_All_Raw by year using SUM and group by commodity. Combine with Exports_MS5 summed by year and grouped by commodity. From this, we should be able to see the monetary value of the exports as well as the outstanding sales in order to see how much was paid for and how much is still outstanding. 
+
+Query 5:
+Combine Exports_MS5 and Imports_All_Raw using the country code and names in the Countries table. Aggregate new table, using SUM, on countries and group by commodities. This will allow us to see all values for countries based on commodities. 
+
+Query 6: 
+Aggregate Exports_MSF by Country using SUM. Combine with Imports_All_Raw aggregated by country using SUM. Using this, we can see total trade values between the US and other countries. 
