@@ -15,7 +15,7 @@ class updateImports(beam.DoFn):
         Qty_Unit = record.get('Qty_Unit')
         Alt_Qty_Unit = record.get('Alt_Qty_Unit')
         Netweight__kg_ = record.get('Netweight__kg_')
-        if Netweight__kg_ == null:
+        if Netweight__kg_ == 'null':
             Netweight__kg_ = 0
 
         Trade_Value__US__ = record.get('Trade_Value__US__')
