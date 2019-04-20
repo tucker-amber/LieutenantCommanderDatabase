@@ -40,7 +40,7 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
 
 
     # Query Countries table on big query selecting all attributes
-    query_results_Countries= p | 'Read from Import table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Aggriculture.Imports_All_Raw LIMIT 100')) # EDIT! currently limiting to 100 for testing
+    query_results_Countries= p | 'Read from Import table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Imports.Imports_All_Raw LIMIT 100')) # EDIT! currently limiting to 100 for testing
 	
     # Write input PCollection to local file input.txt
     query_results_Countries | 'Write querried raw data to input.txt' >> WriteToText('input.txt')
@@ -52,7 +52,7 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
     out_pcoll | 'Write transformed data to output.txt' >> WriteToText('output.txt')
 
     #Create new table
-    qualified_table_name = PROJECT_ID + ':Aggriculture.Imports_MS10'
+    qualified_table_name = PROJECT_ID + ':Imports.Imports_MS10'
     table_schema = 'Year:INTEGER,Reporter:STRING,Partner:STRING,Commodity:STRING,Qty_Unit:STRING,Alt_Qty_Unit:INTEGER,Netweight__kg_:INTEGER,Trade_Value__US__:INTEGER'
 
 	# Write output PCollection to new BigQuery table in main dataset
