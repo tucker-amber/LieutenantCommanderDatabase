@@ -51,7 +51,7 @@ with beam.Pipeline('DirectRunner', options=opts) as p:
     out_pcoll | 'Write transformed data to output.txt' >> WriteToText('output.txt')
 
     #Create new table
-    qualified_table_name = PROJECT_ID + ':Imports.Imports_MS10'
+    qualified_table_name = PROJECT_ID + ':Imports.Imports_2'
     table_schema = 'Year:INTEGER,Reporter:STRING,Partner:STRING,Commodity:STRING,Qty_Unit:STRING,Alt_Qty_Unit:INTEGER,Netweight__kg_:INTEGER,Trade_Value__US__:INTEGER'
 
 	# Write output PCollection to new BigQuery table in main dataset

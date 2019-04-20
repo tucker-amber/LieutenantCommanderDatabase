@@ -46,7 +46,7 @@ with beam.Pipeline('DataflowRunner', options=opts) as p:
 
 
     # Query Countries table on big query selecting all attributes
-    query_results_Countries= p | 'Read from Import table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Imports.Imports_All_Raw )) 
+    query_results_Countries= p | 'Read from Import table BigQuery' >> beam.io.Read(beam.io.BigQuerySource(query='select * from Imports.Imports_All_Raw))
 	
     # Write input PCollection to local file input.txt
     query_results_Countries | 'Write querried raw data to input.txt' >> WriteToText('input.txt')
