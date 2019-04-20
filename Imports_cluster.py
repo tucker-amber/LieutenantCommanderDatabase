@@ -1,4 +1,4 @@
-import os
+import os, datetime
 import apache_beam as beam
 from apache_beam.io import ReadFromText
 from apache_beam.io import WriteToText
