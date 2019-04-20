@@ -15,9 +15,7 @@ class updateImports(beam.DoFn):
         Qty_Unit = record.get('Qty_Unit')
         Alt_Qty_Unit = record.get('Alt_Qty_Unit')
         Netweight__kg_ = record.get('Netweight__kg_')
-        if Netweight__kg_.isdigit():
-            pass
-        else:
+        if Netweight__kg_ == null:
             Netweight__kg_ = 0
 
         Trade_Value__US__ = record.get('Trade_Value__US__')
@@ -26,6 +24,7 @@ class updateImports(beam.DoFn):
         new_record = {'Year': Year, 'Reporter': Reporter, 'Partner': Partner, 'Commodity': Commodity, 'Qty_Unit': Qty_Unit, 'Alt_Qty_Unit': Alt_Qty_Unit, 'Netweight__kg_': Netweight__kg_, 'Trade_Value__US__': Trade_Value__US__}
 
         return [new_record]
+
 # Initalize project id
 PROJECT_ID = os.environ['PROJECT_ID']
 
