@@ -38,10 +38,9 @@ WHERE EXTRACT (YEAR FROM e.date) = 2000 or EXTRACT (YEAR FROM e.date) = 2001 or 
 GROUP BY country_code
 ORDER BY country_code
 
--- Return total imports and exports by year for years with export and import data available
+-- Return total imports and exports by year for years
 SELECT year, SUM(e.current_week_export) as `Total_US_Exports`, SUM(i.Trade_Value__US__) as Total_US_Imports
 FROM Aggriculture.Exports_MS5 e
 FULL JOIN Imports.Imports_MS10 i ON EXTRACT(YEAR FROM e.date) = i.year
-WHERE year = 2000 or year = 2001 or year = 2004 or year = 2005
 GROUP BY year
 ORDER BY year
