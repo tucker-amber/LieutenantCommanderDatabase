@@ -8,17 +8,17 @@ default_dag_args = {
 }
 
 
-sql_Union= 'create table Aggriculture_workflow.Exports_Temp as SELECT * FROM Aggriculture.Exports_2000' \
-'UNION ALL' \
-'SELECT * FROM Aggriculture.Exports_2001' \
-'UNION ALL' \
-'SELECT * FROM Aggriculture.Exports_2002 '\
-'UNION ALL' \
-'SELECT * FROM Aggriculture.Exports_2003' \
-'UNION ALL' \
-'SELECT * FROM Aggriculture.Export_2004' \
-'UNION ALL' \
-'SELECT * FROM Aggriculture.Exports_2005'
+sql_union='create table Aggriculture.Exports_Temp as select * from Aggriculture.Exports_2000' \
+			'union all' \
+			'select * from Aggriculture.Exports_2001' \
+			'union all' \
+			'select * from Aggriculture.Exports_2002' \
+			'union all' \
+			'select * from Aggriculture.Exports_2003' \
+			'union all' \
+			'select * from Aggriculture.Export_2004' \
+			'union all' \
+			'select * from Aggriculture.Exports_2005'
 
 with models.DAG(
         'workflow',
@@ -27,4 +27,4 @@ with models.DAG(
 
 	union_tables = BashOperator(
 		task_id='union_tables',
-		bash_command='bq query --use_legacy_swl=false "'+sql_Union +'"')
+		bash_command='bq query --use_legacy_swl=false "'+sql_union+'"')
