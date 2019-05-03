@@ -17,7 +17,7 @@ SELECT * FROM Aggriculture.Exports_2003\
 UNION ALL\
 SELECT * FROM Aggriculture.Export_2004\
 UNION ALL\
-SELECT * FROM Aggriculture.Exports_2005`
+SELECT * FROM Aggriculture.Exports_2005'
 
 with models.DAG(
         'workflow',
@@ -26,4 +26,4 @@ with models.DAG(
 
 union_tables = BashOperator(
 	task_id='union_tables',
-	bash_command='bq query --use_legacy_swl=false'+sql_Union)
+	bash_command='bq query --use_legacy_swl=false "'+sql_Union +'"')
