@@ -7,16 +7,17 @@ default_dag_args = {
     'start_date': datetime.datetime(2019, 5, 3)
 }
 
-sql_Union= 'SELECT * FROM Aggriculture.Exports_2000\
-UNION ALL\
-SELECT * FROM Aggriculture.Exports_2001\
-UNION ALL\
-SELECT * FROM Aggriculture.Exports_2002\
-UNION ALL\
-SELECT * FROM Aggriculture.Exports_2003\
-UNION ALL\
-SELECT * FROM Aggriculture.Export_2004\
-UNION ALL\
+
+sql_Union= 'create table Aggriculture_workflow.Exports_Temp as SELECT * FROM Aggriculture.Exports_2000 \
+UNION ALL \
+SELECT * FROM Aggriculture.Exports_2001 \
+UNION ALL \
+SELECT * FROM Aggriculture.Exports_2002 \
+UNION ALL \
+SELECT * FROM Aggriculture.Exports_2003 \
+UNION ALL \
+SELECT * FROM Aggriculture.Export_2004 \
+UNION ALL \
 SELECT * FROM Aggriculture.Exports_2005'
 
 with models.DAG(
