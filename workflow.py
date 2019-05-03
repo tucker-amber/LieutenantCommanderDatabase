@@ -7,6 +7,7 @@ default_dag_args = {
     'start_date': datetime.datetime(2019, 5, 3)
 }
 
+sql_cmd_start='bq query --use_legacy_sql=false '
 
 sql_union='select * from Aggriculture.Exports_2000' \
 			'union all' \
@@ -27,6 +28,6 @@ with models.DAG(
 
 	union_tables = BashOperator(
 		task_id='union_tables',
-		bash_command='bq query --use_legacy_sql=false "'+sql_union+'"')
+		bash_command=sql_cmd_start + '"' + sql_union + '"')
 
-	union_tables
+	
