@@ -9,6 +9,7 @@ default_dag_args = {
 
 sql_Union= 'SELECT * FROM Aggriculture.Exports_2000\
 UNION ALL\
+SELECT * FROM Aggriculture.Exports_2001\
 UNION ALL\
 SELECT * FROM Aggriculture.Exports_2002\
 UNION ALL\
