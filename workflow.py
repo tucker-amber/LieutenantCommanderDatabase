@@ -28,3 +28,5 @@ with models.DAG(
 	union_tables = BashOperator(
 		task_id='union_tables',
 		bash_command='bq query --use_legacy_swl=false "'+sql_union+'"')
+
+	union_tables
