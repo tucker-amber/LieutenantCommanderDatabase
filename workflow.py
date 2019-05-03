@@ -4,7 +4,7 @@ from airflow.operators.bash_operator import BashOperator
 
 default_dag_args = {
     # https://airflow.apache.org/faq.html#what-s-the-deal-with-start-date
-    'start_date': datetime.datetime(2019, 4, 1)
+    'start_date': datetime.datetime(2019, 5, 3)
 }
 
 sql_Union= 'SELECT * FROM Aggriculture.Exports_2000\
