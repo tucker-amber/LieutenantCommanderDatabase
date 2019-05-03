@@ -24,6 +24,6 @@ with models.DAG(
         schedule_interval=datetime.timedelta(days=1),
         default_args=default_dag_args) as dag:
 
-union_tables = BashOperator(
-	task_id='union_tables',
-	bash_command='bq query --use_legacy_swl=false "'+sql_Union +'"')
+	union_tables = BashOperator(
+		task_id='union_tables',
+		bash_command='bq query --use_legacy_swl=false "'+sql_Union +'"')
