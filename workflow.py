@@ -38,12 +38,12 @@ with models.DAG(
         default_args=default_dag_args) as dag:
 
 	delete_dataset = BashOperator(
-        task_id='delete_dataset',
+		task_id='delete_dataset',
         bash_command='bq rm -r -f workflow')
-                
-    create_dataset = BashOperator(
-        task_id='create_dataset',
-        bash_command='bq mk workflow')
+
+	create_dataset = BashOperator(
+    	task_id='create_dataset',
+    	bash_command='bq mk workflow')
 
 	union_tables = BashOperator(
 		task_id='union_tables',
