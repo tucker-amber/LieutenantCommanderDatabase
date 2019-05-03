@@ -8,7 +8,7 @@ default_dag_args = {
 }
 
 
-sql_union='create table Aggriculture.Exports_Temp as select * from Aggriculture.Exports_2000' \
+sql_union='select * from Aggriculture.Exports_2000' \
 			'union all' \
 			'select * from Aggriculture.Exports_2001' \
 			'union all' \
