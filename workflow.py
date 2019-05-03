@@ -9,17 +9,7 @@ default_dag_args = {
 
 sql_cmd_start='bq query --use_legacy_sql=false '
 
-sql_union='select * from Aggriculture.Exports_2000' \
-			'union all' \
-			'select * from Aggriculture.Exports_2001' \
-			'union all' \
-			'select * from Aggriculture.Exports_2002' \
-			'union all' \
-			'select * from Aggriculture.Exports_2003' \
-			'union all' \
-			'select * from Aggriculture.Export_2004' \
-			'union all' \
-			'select * from Aggriculture.Exports_2005'
+sql_union='select * from Aggriculture.Exports_2000 union all select * from Aggriculture.Exports_2001 union all select * from Aggriculture.Exports_2002 union all select * from Aggriculture.Exports_2003 union all select * from Aggriculture.Export_2004 union all select * from Aggriculture.Exports_2005'
 
 with models.DAG(
         'workflow',
@@ -30,4 +20,4 @@ with models.DAG(
 		task_id='union_tables',
 		bash_command=sql_cmd_start + '"' + sql_union + '"')
 
-	
+	union_tables
