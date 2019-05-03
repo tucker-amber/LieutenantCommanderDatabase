@@ -8,7 +8,7 @@ default_dag_args = {
 }
 
 
-sql_union='create table Aggriculture_workfllow.Exports_Temp as select * from Aggriculture.Exports_2000' \
+sql_union='create table workfllow.Exports_Temp as select * from Aggriculture.Exports_2000' \
 			'union all' \
 			'select * from Aggriculture.Exports_2001' \
 			'union all' \
@@ -20,13 +20,13 @@ sql_union='create table Aggriculture_workfllow.Exports_Temp as select * from Agg
 			'union all' \
 			'select * from Aggriculture.Exports_2005'
 
-sql_remove='create table Aggriculture_workflow.Exports_2000-20005 select * except(serialid, sort_code, net_sales_for_week_next_year, outstanding_sales_next_year, region_code,country_name)' \
+sql_remove='create table workflow.Exports_2000-2005 select * except(serialid, sort_code, net_sales_for_week_next_year, outstanding_sales_next_year, region_code,country_name)' \
 			'from Aggriculture.Exports_Temp'
 
 sql_date='select * except(week_ending_date), cast(week_ending_date AS DATE) as Date' \
 		'from Aggriculture.Exports_2000_to_2005_reduced'
 
-sql_countries='create table Aggriculture_workfllow.Countries_Temp as' \
+sql_countries='create table workfllow.Countries_Temp as' \
 				'select distinct country_code, country_name, region_code' \
 				'from Aggriculture.Exports_2000_to_2005' \
 				'where country_code is not null' \
