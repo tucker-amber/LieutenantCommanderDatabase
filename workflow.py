@@ -37,6 +37,14 @@ with models.DAG(
         schedule_interval=datetime.timedelta(days=1),
         default_args=default_dag_args) as dag:
 
+	delete_dataset = BashOperator(
+            task_id='delete_dataset',
+            bash_command='bq rm -r -f workflow')
+                
+    create_dataset = BashOperator(
+            task_id='create_dataset',
+            bash_command='bq mk workflow')
+
 	union_tables = BashOperator(
 		task_id='union_tables',
 		bash_command='bq query --use_legacy_sql=false "'+sql_union+'"')
@@ -61,7 +69,7 @@ with models.DAG(
 		task_id='countries_beam',
 		bash_command='python Countries_cluster.py')
 
-	union_tables >> [cast_date,create_countries] >> remove_columns >> [exports_beam,countries_beam]
+	delete_dataset>> create_dataset>> union_tables >> [cast_date,create_countries] >> remove_columns >> [exports_beam,countries_beam]
 
 
 
