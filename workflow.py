@@ -8,7 +8,7 @@ default_dag_args = {
 }
 
 
-sql_union='create table workfllow.Exports_Temp as select * from Aggriculture.Exports_2000' \
+sql_union='create table workflow.Exports_Unioned as select * from Aggriculture.Exports_2000' \
 			'union all' \
 			'select * from Aggriculture.Exports_2001' \
 			'union all' \
@@ -20,13 +20,10 @@ sql_union='create table workfllow.Exports_Temp as select * from Aggriculture.Exp
 			'union all' \
 			'select * from Aggriculture.Exports_2005'
 
-sql_remove='create table workflow.Exports_2000-2005 select * except(serialid, sort_code, net_sales_for_week_next_year, outstanding_sales_next_year, region_code,country_name)' \
+sql_remove='create table workflow.Exports_2000-2005 select * except(week_ending_date,serialid, sort_code, net_sales_for_week_next_year, outstanding_sales_next_year, region_code,country_name),cast(week_ending_date AS DATE) as Date' \
 			'from Aggriculture.Exports_Temp'
 
-sql_date='select * except(week_ending_date), cast(week_ending_date AS DATE) as Date' \
-		'from Aggriculture.Exports_2000_to_2005_reduced'
-
-sql_countries='create table workfllow.Countries_Temp as' \
+sql_countries='create table workflow.Countries_Temp as' \
 				'select distinct country_code, country_name, region_code' \
 				'from Aggriculture.Exports_2000_to_2005' \
 				'where country_code is not null' \
@@ -53,10 +50,6 @@ with models.DAG(
 		task_id='remove_columns',
 		bash_command='bq query --use_legacy_sql=false "'+sql_remove+'"')
 
-	cast_date = BashOperator(
-		task_id='cast_date',
-		bash_command='bq query --use_legacy_sql=false "'+sql_date+'"')
-
 	create_countries = BashOperator(
 		task_id='create_countries',
 		bash_command='bq query --use_legacy_sql=false "'+sql_countries+'"')
@@ -69,7 +62,7 @@ with models.DAG(
 		task_id='countries_beam',
 		bash_command='python Countries_cluster.py')
 
-	delete_dataset>> create_dataset>> union_tables >> [cast_date,create_countries] >> remove_columns >> [exports_beam,countries_beam]
+	delete_dataset>> create_dataset>> union_tables >> [create_countries,remove_columns] >> [exports_beam,countries_beam]
 
 
 
